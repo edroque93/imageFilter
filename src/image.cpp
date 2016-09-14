@@ -34,3 +34,4 @@ void image<T>::applyKernel(int32_t **matrix, int32_t rows, int32_t columns) {
 }
 
 template class image<uint16_t>;
+template class image<uint32_t>;

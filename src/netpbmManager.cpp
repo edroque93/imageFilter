@@ -41,3 +41,4 @@ void netpbmManager<T>::processP3(FILE *handle, image<T> *img) {
 }
 
 template class netpbmManager<uint16_t>;
+template class netpbmManager<uint32_t>;

@@ -1,13 +1,15 @@
 #include <netpbmManager.hpp>
 
+typedef uint16_t colorSize;
+
 int main () {
-	imageManager<uint16_t> *manager;
+	imageManager<colorSize> *manager;
 
 	// ...
-	manager = new netpbmManager<uint16_t>();
+	manager = new netpbmManager<colorSize>();
 	// ...
 
-	image<uint16_t> *img = manager->load("test.ppm");
+	image<colorSize> *img = manager->load("test.ppm");
 	manager->store(img);
 
 	delete manager;
