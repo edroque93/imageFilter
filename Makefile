@@ -1,5 +1,5 @@
 CXX = g++
-CFLAGS = -std=c++0x -I include/
+CFLAGS = -g -std=c++0x -I include/
 LDFLAGS =
 WARNINGS =
 SOURCES = $(wildcard src/*.cpp)

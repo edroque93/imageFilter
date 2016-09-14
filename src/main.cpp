@@ -1,14 +1,17 @@
-#include <ppmManager.hpp>
+#include <netpbmManager.hpp>
 
 int main () {
-	int a = 34;
-	int b = 23;
-
 	imageManager *manager;
 
-	*manager = ppmManager();
+	// ...
+	manager = new netpbmManager();
+	// ...
 
-	image img = manager->load("paco");
+	image *img = manager->load("pepe");
+	manager->store(img);
+
+	delete manager;
+	delete img;
 
 	return 0;
 }
