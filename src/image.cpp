@@ -7,12 +7,20 @@ image::image(uint32_t width, uint32_t height) {
 	for (uint32_t i = 0; i < width; i++) {
 		map[i] = (image::pixel *) malloc(height * sizeof (image::pixel));
 	}
+	initializeMap();
 }
 
 image::~image() {
-
+	for (uint32_t i = 0; i < width; i++) {
+		free(map[i]);
+	}
+	free(map);
 }
 
 void image::initializeMap() {
-	
+	for (uint32_t x = 0; x < width; x++) {
+		for (uint32_t y = 0; y < height; y++) {
+			map[x][y].R = map[x][y].G = map[x][y].B = 0;
+		}
+	}
 }
