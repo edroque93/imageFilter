@@ -1,14 +1,14 @@
-#include <ppmLoader.hpp>
+#include <ppmManager.hpp>
 
 int main () {
 	int a = 34;
 	int b = 23;
 
-	imageLoader *loader;
+	imageManager *manager;
 
-	*loader = ppmLoader();
+	*manager = ppmManager();
 
-	loader->load("paco");
-	
+	image img = manager->load("paco");
+
 	return 0;
 }

@@ -16,6 +16,7 @@ class image {
 		~image();
 
 		void initializeMap();
+		//void applyFilter
 		
 	private:
 		uint32_t width, height;
