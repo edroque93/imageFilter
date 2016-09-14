@@ -10,12 +10,12 @@ all: $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
 	@echo Linking
-	$(CXX) $(OBJECTS) -o $(EXECUTABLE) $(LIBRARIES) $(LDFLAGS)
+	@$(CXX) $(OBJECTS) -o $(EXECUTABLE) $(LIBRARIES) $(LDFLAGS)
 
 obj/%.o: src/%.cpp
 	@echo Compiling $<
 	@mkdir obj -p
-	$(CXX) -c $< -o $@ $(CFLAGS) $(WARNINGS)
+	@$(CXX) -c $< -o $@ $(CFLAGS) $(WARNINGS)
 
 clean:
-	rm -rf $(EXECUTABLE) $(OBJECTS)
+	@rm -rf $(EXECUTABLE) $(OBJECTS)

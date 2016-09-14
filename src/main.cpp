@@ -1,10 +1,14 @@
-#include <image.hpp>
+#include <ppmLoader.hpp>
 
 int main () {
 	int a = 34;
 	int b = 23;
 
-	//image img;
+	imageLoader *loader;
 
+	*loader = ppmLoader();
+
+	loader->load("paco");
+	
 	return 0;
 }

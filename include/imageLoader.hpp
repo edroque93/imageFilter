@@ -3,9 +3,9 @@
 
 #include <image.hpp>
 
-class image_loader {
+class imageLoader {
 	public: 
-		virtual image load(char* file) = 0;
+		virtual image load(char const* file) = 0;
 };
 
 #endif
