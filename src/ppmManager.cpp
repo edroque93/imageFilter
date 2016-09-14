@@ -1,6 +1,11 @@
 #include <ppmManager.hpp>
 
+//
+#include <stdio.h>
+//
+
 image ppmManager::load(char const *file) {
+	printf("%s", file);
 	return image(1,1);
 }
 
