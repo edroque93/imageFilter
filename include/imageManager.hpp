@@ -5,7 +5,7 @@
 
 class imageManager {
 	public: 
-		virtual image load(char const* file) = 0;
+		virtual image load(char const *file) = 0;
 		virtual bool store(image img) = 0;
 };
 

@@ -24,3 +24,7 @@ void image::initializeMap() {
 		}
 	}
 }
+
+void applyKernel(int32_t **matrix, int32_t rows, int32_t columns) {
+	return;
+}

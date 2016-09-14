@@ -1,6 +1,6 @@
 #include <ppmManager.hpp>
 
-image ppmManager::load(char const* file) {
+image ppmManager::load(char const *file) {
 	return image(1,1);
 }
 

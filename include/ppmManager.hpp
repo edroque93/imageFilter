@@ -6,7 +6,7 @@
 
 class ppmManager: public imageManager {
 	public: 
-		image load(char const* file);
+		image load(char const *file);
 		bool store(image img);
 };
 
