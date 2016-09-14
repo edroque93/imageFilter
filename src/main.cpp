@@ -1,13 +1,13 @@
 #include <netpbmManager.hpp>
 
 int main () {
-	imageManager *manager;
+	imageManager<uint16_t> *manager;
 
 	// ...
-	manager = new netpbmManager();
+	manager = new netpbmManager<uint16_t>();
 	// ...
 
-	image *img = manager->load("pepe");
+	image<uint16_t> *img = manager->load("test.ppm");
 	manager->store(img);
 
 	delete manager;

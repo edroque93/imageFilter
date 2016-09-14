@@ -3,6 +3,6 @@
 
 #include <stdio.h>
 
-#define ERROR(error) { fprintf(stderr, "Error -> %s\n", error); exit(-1); }
+#define ERROR(error) { fprintf(stderr, "[Error] %s\n", error); exit(-1); }
 
 #endif
