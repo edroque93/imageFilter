@@ -8,7 +8,8 @@ int main () {
 	manager = new netpbmManager();
 	// ...
 
-	image *img = manager->load("test.ppm");
+	image *img = manager->load("tux.ppm");
+	img->printImage();
 	manager->store(img);
 
 	delete manager;

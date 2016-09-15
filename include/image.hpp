@@ -3,11 +3,12 @@
 
 #include <stdint.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 class image {
 	public:
 		struct pixel {
-			uint16_t R, G, B;
+			uint16_t A, R, G, B;
 		};
 
 		image::pixel **map;
@@ -18,6 +19,7 @@ class image {
 
 		void initializeMap();
 		void applyKernel(int32_t **matrix, int32_t rows, int32_t columns);
+		void printImage();
 };
 
 #endif

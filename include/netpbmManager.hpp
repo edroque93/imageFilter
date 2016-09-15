@@ -4,16 +4,24 @@
 #include <imageManager.hpp>
 #include <image.hpp>
 #include <macros.hpp>
+
 #include <stdio.h>
+#include <string.h>
 
 class netpbmManager: public imageManager {
 	public:
-		char type[2];
-		
-		image *load(char const *file);
+		image *load(const char *file);
 		bool store(image *img);
+
 	private:
-		void processP3(FILE *handle, image *img);
+		const char *whitespace = "\n\r\t ";
+		char comment = '#';
+		char newline = '\n';
+		size_t scoop = 4096;
+		char type[2];
+
+		image *processP3(FILE *handle);
+		uint32_t getUint32(char *buffer, size_t size, size_t *pointer); 
 };
 
 #endif

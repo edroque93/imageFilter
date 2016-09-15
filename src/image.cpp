@@ -20,11 +20,20 @@ image::~image() {
 void image::initializeMap() {
 	for (uint32_t x = 0; x < width; x++) {
 		for (uint32_t y = 0; y < height; y++) {
-			map[x][y].R = map[x][y].G = map[x][y].B = 0;
+			map[x][y].A = map[x][y].R = map[x][y].G = map[x][y].B = 0;
 		}
 	}
 }
 
 void image::applyKernel(int32_t **matrix, int32_t rows, int32_t columns) {
 	return;
+}
+
+void image::printImage() {
+	for (uint32_t y = 0; y < height; y++) {
+		for (uint32_t x = 0; x < width; x++) {
+			printf("%d|%d|%d ", map[x][y].R, map[x][y].G, map[x][y].B);
+		}
+		printf("\n");
+	}
 }
