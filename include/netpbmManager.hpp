@@ -6,15 +6,14 @@
 #include <macros.hpp>
 #include <stdio.h>
 
-template <typename T>
-class netpbmManager: public imageManager<T> {
+class netpbmManager: public imageManager {
 	public:
 		char type[2];
 		
-		image<T> *load(char const *file);
-		bool store(image<T> *img);
+		image *load(char const *file);
+		bool store(image *img);
 	private:
-		void processP3(FILE *handle, image<T> *img);
+		void processP3(FILE *handle, image *img);
 };
 
 #endif

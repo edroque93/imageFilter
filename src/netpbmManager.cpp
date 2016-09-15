@@ -1,8 +1,7 @@
 #include <netpbmManager.hpp>
 
-template <typename T>
-image<T> *netpbmManager<T>::load(char const *file) {
-	image<T> *result = NULL;
+image *netpbmManager::load(char const *file) {
+	image *result = NULL;
 
 	FILE *handle = fopen(file, "rb");
 	if (handle == NULL) {
@@ -30,15 +29,10 @@ image<T> *netpbmManager<T>::load(char const *file) {
 	return result;
 }
 
-template <typename T>
-bool netpbmManager<T>::store(image<T> *img) {
+bool netpbmManager::store(image *img) {
 	return true;
 }
 
-template <typename T>
-void netpbmManager<T>::processP3(FILE *handle, image<T> *img) {
+void netpbmManager::processP3(FILE *handle, image *img) {
 	ERROR("netpbmManager::processP3: TODO.");
 }
-
-template class netpbmManager<uint16_t>;
-template class netpbmManager<uint32_t>;

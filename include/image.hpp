@@ -4,11 +4,10 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-template <typename T>
 class image {
 	public:
 		struct pixel {
-			T R, G, B;
+			uint16_t R, G, B;
 		};
 
 		image::pixel **map;

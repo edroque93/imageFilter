@@ -3,11 +3,10 @@
 
 #include <image.hpp>
 
-template <typename T>
 class imageManager {
 	public: 
-		virtual image<T> *load(char const *file) = 0;
-		virtual bool store(image<T> *img) = 0;
+		virtual image *load(char const *file) = 0;
+		virtual bool store(image *img) = 0;
 };
 
 #endif
