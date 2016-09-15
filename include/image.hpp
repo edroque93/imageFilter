@@ -18,7 +18,7 @@ class image {
 		~image();
 
 		void initializeMap();
-		void applyKernel(int32_t **matrix, int32_t rows, int32_t columns);
+		void applyKernel(int32_t **matrix, uint32_t rows, uint32_t columns);
 		void printImage();
 };
 

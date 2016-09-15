@@ -40,13 +40,13 @@ bool netpbmManager::store(image *img, const char *name) {
 	for (size_t y = 0; y < img->height; y++) {
 		int count = 0;
 		for (size_t x = 0; x < img->width; x++) {
-			
+			// TODO normalize colors to maxvalue
 			fprintf(handle, "%d %d %d ", img->map[x][y].R, img->map[x][y].G, img->map[x][y].B);
 			count++;
 			if (count == 6) {
 				fprintf(handle, "\n");
 				count = 0;
-			}
+			} // TODO prettify this so each line contains +- 70 characters
 		}
 	}
 

@@ -26,7 +26,25 @@ void image::initializeMap() {
 	}
 }
 
-void image::applyKernel(int32_t **matrix, int32_t rows, int32_t columns) {
+void image::applyKernel(int32_t **matrix, uint32_t rows, uint32_t columns) {
+	for (size_t y = 0; y < height; y++) {
+		for (size_t x = 0; x < width; x++) {
+			uint32_t acc_R = 0.;
+			uint32_t acc_G = 0.;
+			uint32_t acc_B = 0.;
+			for (size_t j = rows-1; j >= 0; j--) {
+				for (size_t i = columns-1; i >= 0; i--) {
+					acc_R += matrix[i][j] * map[x-i][y-j].R; //fuck
+					//acc_G +=
+					//acc_B +=
+				}
+			}
+			// TODO prenormalization?
+			map[x][y].R = acc_R;
+			map[x][y].G = acc_G;
+			map[x][y].B = acc_B;
+		}
+	}
 	return;
 }
 
