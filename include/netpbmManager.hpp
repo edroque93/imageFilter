@@ -11,13 +11,14 @@
 class netpbmManager: public imageManager {
 	public:
 		image *load(const char *file);
-		bool store(image *img);
+		bool store(image *img, const char *name);
 
 	private:
 		const char *whitespace = "\n\r\t ";
 		char comment = '#';
 		char newline = '\n';
 		size_t scoop = 4096;
+		size_t scoopPad = 64;
 		char type[2];
 
 		image *processP3(FILE *handle);

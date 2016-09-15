@@ -12,9 +12,9 @@ class image {
 		};
 
 		image::pixel **map;
-		uint32_t width, height;
+		uint32_t width, height, depth;
 
-		image(uint32_t width, uint32_t height);
+		image(uint32_t width, uint32_t height, uint32_t depth);
 		~image();
 
 		void initializeMap();

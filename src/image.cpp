@@ -1,8 +1,9 @@
 #include <image.hpp>
 
-image::image(uint32_t width, uint32_t height) {
+image::image(uint32_t width, uint32_t height, uint32_t depth) {
 	this->width = width;
 	this->height = height;
+	this->depth = depth;
 	map = (image::pixel **) malloc(width * sizeof(image::pixel *));
 	for (uint32_t i = 0; i < width; i++) {
 		map[i] = (image::pixel *) malloc(height * sizeof(image::pixel));

@@ -9,8 +9,8 @@ int main () {
 	// ...
 
 	image *img = manager->load("tux.ppm");
-	img->printImage();
-	manager->store(img);
+	//img->printImage();
+	manager->store(img, "paco.ppm");
 
 	delete manager;
 	delete img;
