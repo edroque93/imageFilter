@@ -58,14 +58,22 @@ bool netpbmManager::store(image *img, const char *name) {
 image *netpbmManager::processP3(FILE *handle) {
 	image *img = NULL;
 	uint32_t width = 0, height = 0, maxValue = 0;
-	uint8_t rgb = 0;
 	uint32_t pWidth = 0, pHeight = 0;
+	uint8_t rgb = 0;
 	size_t read;
 	char buffer[scoop];
-	char bufferAux[scoopPad];
-	uint32_t pixel = 0;
+	size_t realPad = 0;
+	bool usingAux = false;
+
 	do {
-		read = fread(&buffer, sizeof(char), scoop, handle);
+		if (usingAux) {
+			memcpy(buffer, &buffer[scoop-realPad], realPad);
+			read = fread(&buffer[realPad], sizeof(char), scoop-realPad, handle) + realPad;
+			usingAux = false;
+		} else {
+			read = fread(&buffer, sizeof(char), scoop, handle);
+			realPad = 0;
+		}
 		size_t pointer = 0;
 		while (pointer < read) {
 			if (strchr(whitespace, buffer[pointer]) != NULL) {
@@ -107,11 +115,13 @@ image *netpbmManager::processP3(FILE *handle) {
 						} else {
 							pWidth++;
 						}
-					}
-				}
-				if (read == scoop) {
-					if (pointer >= (scoop - scoopPad)) {
-
+						if (read == scoop) {
+							if ((pointer + scoopPad) >= scoop) {
+								realPad = scoop - pointer;
+								usingAux = true;
+								break;
+							}
+						}
 					}
 				}
 			}
