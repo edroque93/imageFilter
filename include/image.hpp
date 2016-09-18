@@ -1,9 +1,12 @@
 #ifndef IMAGE_HPP
 #define IMAGE_HPP
 
+#include <macros.hpp>
+
 #include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 class image {
 	public:
@@ -17,8 +20,10 @@ class image {
 		image(uint32_t width, uint32_t height, uint32_t depth);
 		~image();
 
+		image *applyKernel(int32_t **matrix, uint32_t rows, uint32_t columns);
+		image *substractImage(image *img);
+	private:
 		void initializeMap();
-		void applyKernel(int32_t **matrix, uint32_t rows, uint32_t columns);
 		void printImage();
 };
 
