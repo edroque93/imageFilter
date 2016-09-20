@@ -26,6 +26,47 @@ void image::initializeMap() {
 	}
 }
 
+image *image::applyKernel(kernel *k) {
+	image *result = new image(width, height, depth);
+	uint8_t radix = k->width/2;
+	if (k->height/2 != radix) {
+		ERROR("image::applyKernel: wrong matrix dimension.");
+	}
+	for (int64_t y = 0; y < height; y++) {
+		for (int64_t x = 0; x < width; x++) {
+			double acc_R = 0.;
+			double acc_G = 0.;
+			double acc_B = 0.;
+			for (int j = k->height-1; j >= 0; j--) {
+				for (int i = k->width-1; i >= 0; i--) {
+					double kernelNormalized = (double) k->matrix[i][j]/k->divisor;
+					int64_t realY = y-j+radix;
+					int64_t realX = x-i+radix;
+					if (realX < 0) {
+						realX = 0;
+					}
+					if (realX >= width) {
+						realX = width-1;
+					}
+					if (realY < 0) {
+						realY = 0;
+					}
+					if (realY >= height) {
+						realY = height-1;
+					}
+					acc_R += kernelNormalized * (double) map[realX][realY].R;
+					acc_G += kernelNormalized * (double) map[realX][realY].G;
+					acc_B += kernelNormalized * (double) map[realX][realY].B;
+				}
+			}
+			result->map[x][y].R = acc_R;
+			result->map[x][y].G = acc_G;
+			result->map[x][y].B = acc_B;
+		}
+	}
+	return result;
+}
+
 image *image::applyKernel(int32_t **matrix, uint32_t rows, uint32_t columns) {
 	image *result = new image(width, height, depth);
 	uint8_t radix = rows/2;
@@ -62,8 +103,8 @@ image *image::applyKernel(int32_t **matrix, uint32_t rows, uint32_t columns) {
 
 image *image::substractImage(image *img) {
 	image *result = new image(width, height, depth);
-	for (size_t y = 2; y < height-2; y++) {
-		for (size_t x = 2; x < width-2; x++) {
+	for (size_t y = 0; y < height; y++) {
+		for (size_t x = 0; x < width; x++) {
 			result->map[x][y].R = map[x][y].R - img->map[x][y].R;
 			result->map[x][y].G = map[x][y].G - img->map[x][y].G;
 			result->map[x][y].B = map[x][y].B - img->map[x][y].B;
