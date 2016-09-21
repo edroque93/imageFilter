@@ -93,9 +93,9 @@ image *image::applyKernel(int32_t **matrix, uint32_t rows, uint32_t columns) {
 					acc_B += kernelNormalized * (double) map[x-i+radix][y-j+radix].B;
 				}
 			}
-			result->map[x][y].R = acc_R; // edited for substraction  // map[x][y].R -
-			result->map[x][y].G = acc_G;                             // map[x][y].G -
-			result->map[x][y].B = acc_B;                             // map[x][y].B -
+			result->map[x][y].R = acc_R;
+			result->map[x][y].G = acc_G;
+			result->map[x][y].B = acc_B;
 		}
 	}
 	return result;

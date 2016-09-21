@@ -41,6 +41,8 @@ class kernel {
 		void allocMatrix();
 		void initializeMatrix();
 		void processGaussian(struct kernelInfo *info);
+		double gauss2D(double x, double y, double sigma);
+		double gauss2Dint(double x, double y, double sigma, double offset, double interval);
 };
 
 #endif

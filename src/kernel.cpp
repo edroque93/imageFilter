@@ -59,29 +59,41 @@ void kernel::processGaussian(struct kernelInfo *info) {
 	this->width = 1 + gauss.radius * 2;
 	this->height = this->width;
 	allocMatrix();
-	const double sigmas = 2.6;
-	double sqrtCell = 2*sigmas*gauss.sigma/this->width;
+	const double radius = 2.39;
+	double division = (2*radius*gauss.sigma)/(this->width);
 	double integral[this->width][this->height];
 	for (int32_t y = 0; y < this->height; y++) {
 		for (int32_t x = 0; x < this->width; x++) {
-			double sum = 0.;
-			int divisions = 0;
-			for (double j = -sigmas*gauss.sigma+y*sqrtCell; j < -sigmas*gauss.sigma+y*sqrtCell+sqrtCell; j+=0.001) {
-				for (double i = -sigmas*gauss.sigma+x*sqrtCell; i < -sigmas*gauss.sigma+x*sqrtCell+sqrtCell; i+=0.001) {
-					sum += 
-						(1 / (2 * M_PI * gauss.sigma * gauss.sigma)) *
-						pow(M_E, -((i * i + j * j) / (2 * gauss.sigma * gauss.sigma)));
-					divisions++;
-				}
-			}
-			integral[x][y] = sum / divisions;
+			double p_x = -radius * gauss.sigma + x * division;
+			double p_y = -radius * gauss.sigma + y * division;
+			integral[x][y] = gauss2Dint(p_x, p_y, gauss.sigma, division, 0.001);
 		}
 	}
-	this->divisor = round(1./integral[0][0]);
+	this->divisor = ceil(1./integral[0][0]);
 	for (int32_t y = 0; y < this->height; y++) {
 		for (int32_t x = 0; x < this->width; x++) {
 			matrix[x][y] = this->divisor * integral[x][y];
+			printf("%d ", matrix[x][y]);
+		}
+		printf("\n");
+	}
+}
+
+double kernel::gauss2D(double x, double y, double sigma) {
+	return 
+		(1 / (2 * M_PI * sigma * sigma)) * 
+		pow(M_E, -((x * x + y * y) / (2 * sigma * sigma)));
+}
+
+double kernel::gauss2Dint(double x, double y, double sigma, double offset, double interval) {
+	double integral = 0.;
+	int it = 0;
+	for (double i = x; i < x+offset; i += interval) {
+		for (double j = y; j < y+offset; j += interval) {
+			integral += gauss2D(i, j, sigma);
+			it++;
 		}
 	}
+	return integral/it;
 }
 
