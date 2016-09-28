@@ -8,7 +8,7 @@ int main () {
 		.sigma = 1.0,
 		.radius = 2
 	};
-	kernel k(&info); // integral is failing
+	kernel k(&info);
 	//kernel k(
 	//	5,5,
 	//	1,4,7,4,1,
